@@ -149,7 +149,7 @@ Ou alors, faites la migration lorsque vous êtes sûr qu'aucune personne ne sera
 
 Ou alors, désactiver le `dhcp` en étant sûr que les bails ont tous expirés et qu'aucun utilisateur n'aura l'idée de mettre son client en ip fixe.
 
-
+Si vous disposez d'un serveur owncloud, il faut soit l'éteindre, soit supprimer le montage des partages samba dans l'interface de gestion.
 ### Temps à prévoir
 Il vous faut une journée pour être sûr que tout soit bien fait.
 
@@ -255,7 +255,7 @@ Bootez sur le cd `super-grub2` : le `se3` devrait alors se lancer.
 ### Autre solution
 > *Marc : "`grub-repair` n'avait pas marché (deux jours de chaos au lycée). J'avais réussi à réinstaller `grub` en suivant la procédure en `chroot` du site ci-dessous (j'avais fait les deux techniques de cette partie… Les deux m'indiquaient un message d'échec mais c'était reparti !)"*
 
-> https://wikiUtiliser les scripts de sauvegarde/restauration.debian-fr.xyz/R%C3%A9installer_Grub2
+> https://wiki.xyz/R%C3%A9installer_Grub2
 
 
 ## Configurer l'onduleur
