@@ -255,7 +255,7 @@ Bootez sur le cd `super-grub2` : le `se3` devrait alors se lancer.
 ### Autre solution
 > *Marc : "`grub-repair` n'avait pas marché (deux jours de chaos au lycée). J'avais réussi à réinstaller `grub` en suivant la procédure en `chroot` du site ci-dessous (j'avais fait les deux techniques de cette partie… Les deux m'indiquaient un message d'échec mais c'était reparti !)"*
 
-> https://wiki.xyz/R%C3%A9installer_Grub2
+> https://wiki.debian-fr.xyz/Réinstaller_Grub2
 
 
 ## Configurer l'onduleur
