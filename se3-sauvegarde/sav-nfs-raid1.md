@@ -6,11 +6,14 @@ On dispose ici d'un disque de petite contenance sda pour installer le système (
 On a aussi deux disques sdb et sdc identiques. On va créer un raid1 (mirroring) logiciel entre sdb et sdc. Ce raid sera monté ensuite dans le système.
 
 # installation de la debian de base
-On choisi le nom, mos de passe root et utilisateurs.
-On va aussi créer une partition sdb1 (et sdc1 si on veut faire un raid logiciel plus tard).
-On va partitionner le disque sda (1.png) choisir "mode assisté, utiliser un disque entier". Valider
+* On boot avec un livecd netinstall debian stretch (https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.4.0-amd64-netinst.iso)
+* On choisit le mode avancé (pas graphical install qui est inutile pour un serveur)
+* On choisi le nom, mos de passe root et utilisateurs.
+* On va partitionner le disque sda (1.png) choisir "mode assisté, utiliser un disque entier". Valider
+* On va aussi créer une partition sdb1 (et sdc1 si on veut faire un raid logiciel plus tard). On clique sur sdb et on valide pour faire une partition utilisant le disque entier.
+Ainsi sdb1 (et sdc1 sont créées). 2.png
 
-Lire un autre cd >non
+* Lire un autre cd :non
 
 * Choix du miroir
 On peut utiliser celui du se3 (apt-cacher). On montra jusqu'à choisir "manuel"
@@ -24,10 +27,11 @@ On valide puis on entre /ftp.fr.debian.org/debian/
 On réservera une ip pour le serveur.
 
 # Création du raid1
-On installe le paquet mdadm
+* On installe le paquet mdadm
 ```
 apt-get install mdadm
 ```
+*
 
 
 
