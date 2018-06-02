@@ -1,12 +1,15 @@
 Installation d'un partage nfs pour effectuer des sauvegardes backuppc ou de VM proxmox
 
-On dispose ici d'un disque de petite contenance sda pour installer le système (distrib debian serveur).
-On a aussi deux disques sdb et sdc identiques. On va créer un raid logiciel entre sdb et sdc. Ce raid sera monté ensuite dans le système.
+Pour faire des sauvegardes backuppc, par script
 
-installation de la debian de base
+On dispose ici d'un disque de petite contenance sda pour installer le système (distrib debian serveur).
+On a aussi deux disques sdb et sdc identiques. On va créer un raid1 (mirroring) logiciel entre sdb et sdc. Ce raid sera monté ensuite dans le système.
+
+# installation de la debian de base
 On choisi le nom, mos de passe root et utilisateurs.
+On va aussi créer une partition sdb1 (et sdc1 si on veut faire un raid logiciel plus tard).
 On va partitionner le disque sda (1.png) choisir "mode assisté, utiliser un disque entier". Valider
-On ne s'occupe pas pour l'instant des deux autres disques.
+
 Lire un autre cd >non
 
 * Choix du miroir
@@ -16,6 +19,18 @@ On valide puis on entre /ftp.fr.debian.org/debian/
 
 * Choix du proxy: on entre celui de l'Amon (http://172.20.0.1:3128)
 * Choix des logiciels à installer: seulement serveur ssh et utilitaires usuels du système.
+* Installer le grub sur le disque sda (ainsi, pas de problème en cas de changement de config du raid).
+* on redémarre.
+On réservera une ip pour le serveur.
+
+# Création du raid1
+On installe le paquet mdadm
+```
+apt-get install mdadm
+```
+
+
+
 
 
 
