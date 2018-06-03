@@ -1,4 +1,5 @@
-Installation d'un partage nfs pour effectuer des sauvegardes backuppc ou de VM proxmox
+Installation d'un partage nfs pour effectuer des sauvegardes backuppc ou de VM proxmox.
+
 On ne le dira jamais assez, il est indispensable de faire des sauvagardes de ses données. L'idéal étant que les sauvagrdes ne soient pas dans le même espace physique que les serveurs (en cas d'incendie, d'inondation,etc).
 
 Si on ne dispose pas d'un NAS, on peut utiliser un vieux serveur qui sera relié au switch principal en Gigabyte. Ce serveur doit être équipé de disques neufs (ou alors on prends des risques).
@@ -128,7 +129,7 @@ Dans ce cas, on mettra dans le fichier/etc/export une ligne personnalisée pour 
 
 # Montage du partage nfs sur le se3 ou noeud proxmox
 
-## Montage du partage nfspour backuppc
+## Montage du partage nfs pour backuppc
 Sur le se3, on fera le montage de façon manuelle pour voir si le partage fonctionne.
 ```
 mount -t nfs 172.20.0.6:/home/partage-nfs /var/lib/backuppc/
