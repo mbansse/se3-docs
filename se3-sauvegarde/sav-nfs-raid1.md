@@ -1,20 +1,33 @@
-Installation d'un partage nfs pour effectuer des sauvegardes backuppc ou de VM proxmox.
+Installation d'un partage nfs pour effectuer des sauvegardes **backuppc** , **par scripts** ou de **VM proxmox**.
 
-On ne le dira jamais assez, il est indispensable de faire des sauvagardes de ses données. L'idéal étant que les sauvagrdes ne soient pas dans le même espace physique que les serveurs (en cas d'incendie, d'inondation,etc).
+On ne le dira jamais assez, il est indispensable de faire des sauvagardes de ses données. L'idéal étant que les sauvegardes ne soient **pas dans le même espace physique que les serveurs** (en cas d'incendie, d'inondation,etc).
 
 Si on ne dispose pas d'un NAS, on peut utiliser un vieux serveur qui sera relié au switch principal en Gigabyte. Ce serveur doit être équipé de disques neufs (ou alors on prends des risques).
 
-On dispose ici d'un disque de petite contenance sda pour installer le système (distrib debian serveur).
+On dispose ici d'un disque de petite contenance sda pour installer le système (distrib debian serveur).On a aussi deux disques sdb et sdc identiquesde capacité importante.
 
+On va créer un raid1 (mirroring) logiciel entre sdb et sdc. Ce raid sera monté ensuite dans le système. Les disques sont des disques sata, aucune carte raid n'est nécessaire puisqu'il s'agit d'un raid logiciel et donc géré par Débian.
 
-On a aussi deux disques sdb et sdc identiques. On va créer un raid1 (mirroring) logiciel entre sdb et sdc. Ce raid sera monté ensuite dans le système. Les disques sont des disques sata, aucune carte raid n'est nécessaire puisqu'il s'agit d'un raid logiciel et donc géré par Débian.
 Il n'est pas du tout obligatoire de faire un raid logiciel (utiliser un raid rajoute une probabilité de problème logiciel). On pourra suivre le mode opératoire en zappant la partie raid et en remplaçant /dev/md0 par /dev/sdb1 (si disque sdb1)
 
-# installation de la debian de base
+
+
+
+* [installation de la debian server](#installation-de-la-debian-server)
+* [Création du raid1 logiciel](#creation-du-raid1-logiciel)
+* [Montage du raid](#montage-du-raid)
+* [Création du partage nfs](#creation-du-partage-nfs)
+* [Montage du partage nfs sur le se3 ou noeud proxmox](#montage-du-partage-nfs-sur-le-se3-ou-noeud-proxmox)
+     * [Montage du partage nfs pour backuppc](#montage-du-partage-nfs-pour-backuppc)
+     * [utilisation du partage nfs pour Proxmox](#utilisation-du-partage-nfs-pour-proxmox)
+
+
+
+# installation de la debian server 
 * On boot avec un livecd netinstall debian stretch (https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.4.0-amd64-netinst.iso)
-* On choisit le mode avancé (pas graphical install qui est inutile pour un serveur)
+* On choisit le mode avancé (pas graphical install qui est inutile pour un serveur).
 * On choisi le nom, mots de passe root et utilisateurs.
-* On va partitionner le disque sda  choisir "mode assisté, utiliser un disque entier". Valider
+* On va partitionner le disque sda  choisir "mode assisté, utiliser un disque entier". Valider.
 * On va aussi créer une partition sdb1 (et sdc1 si on veut faire un raid logiciel plus tard). On clique sur sdb et on valide pour faire une partition utilisant le disque entier.Idem pour sdc.
 
 Ainsi sdb1 (et sdc1 sont créées). 2.png
@@ -40,7 +53,7 @@ netmask 255.255.0.0
 gateway 172.20.0.1
 ```
 
-# Création du raid1 logiciel.
+# Création du raid1 logiciel
 * On installe le paquet mdadm
 ```
 apt-get install mdadm
