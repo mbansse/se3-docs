@@ -81,7 +81,59 @@ sr0     11:0    1  1024M  0 rom
 
 # Création du partage nfs
 
+Il faut ajouter les sources non-free dans les paquets
 
+```
+nano /etc/apt/sources.list
+```
+On ajoute "contrib et non-free" après "main" sur les dépots existants.
+
+```
+apt-get update
+apt-get upgrade
+apt install nfs-kernel-server nfs-common
+```
+Un fichier  de configuration /etc/exports a été créé. C'est dans ce fichier qu'on va indiquer l'emplacement physique du partage, et les ip des clients autorisés à se connecter.
+
+```
+nano /etc/exports
+```
+
+On ajoute dans le fichier (en remplaçant IP_client1 par l'ip du poste autorisé à se connecter, donc l'ip du se3, ou d'un serveur proxmox. On peut évidemment ajouter plusieurs clients )
+
+```
+/home/partage-nfs IP_client1(rw,no_subtree_check,sync,no_root_squash) IP_client2(rw,no_subtree_check,sync,no_root_squash)
+```
+On relance le service
+```
+service nfs-kernel-server restart nfs
+```
+
+# Montage du partage nfs sur le se3 ou noeud proxmox
+Sur le se3, on fera le montage de façon manuelle pour voir si le partage fonctionne.
+```
+mount -t nfs 172.20.0.6:/home/partage-nfs /var/lib/backuppc/
+mount
+umount /var/lib/backuppc
+```
+Il sera préferable d'ajouter une ligne de montage automatique au fichier /etc/fstab
+
+```
+172.20.0.6:/home/partage-nfs /var/lib/backuppc nfs rw 0 2
+```
+puis
+```
+mount -a
+mount
+```
+On regarde si le montage est maintenant bien fait. On ira aussi vérifier sur l'interface du se3 (partie sauvegarde>configuration) si le nouvel espace de stockage est bien pris en compte.
+
+On doit remettre les bons droits à backuppc
+
+```
+chown -R backuppc:backuppc /var/lib/backuppc
+chmod -R 775 /var/lib/backuppc
+```
 
 
 
