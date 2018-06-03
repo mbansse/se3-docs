@@ -14,9 +14,9 @@ Il n'est pas du tout obligatoire de faire un raid logiciel (utiliser un raid raj
 
 
 * [installation de la debian server](#installation-de-la-debian-server)
-* [Création du raid1 logiciel](#creation-du-raid1-logiciel)
+* [Création du raid1 logiciel](#création-du-raid1-logiciel)
 * [Montage du raid](#montage-du-raid)
-* [Création du partage nfs](#creation-du-partage-nfs)
+* [Création du partage nfs](#création-du-partage-nfs)
 * [Montage du partage nfs sur le se3 ou noeud proxmox](#montage-du-partage-nfs-sur-le-se3-ou-noeud-proxmox)
      * [Montage du partage nfs pour backuppc](#montage-du-partage-nfs-pour-backuppc)
      * [utilisation du partage nfs pour Proxmox](#utilisation-du-partage-nfs-pour-proxmox)
