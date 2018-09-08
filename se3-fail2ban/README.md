@@ -9,7 +9,7 @@ Fail2ban est un paquet debian qui examine des fichiers de logs choisis pour dét
 Si on une ip fait 3 erreurs de connexion consécutives, alors l'ip est bannie provisoirement, et la connexion n'est plus possible.
 
 
-Dans le cas du se3, **l'interface web ne sera plus disponible** pendant la durée choisie. On empêchera donc ainsi une attaque par force brute. **La protection du protocole ssh est aussi installée automatiquement.
+Dans le cas du se3, **l'interface web ne sera plus disponible pour l'ip concernée** pendant la durée choisie. On empêchera donc ainsi une attaque par force brute. **La protection du protocole ssh est aussi installée automatiquement.
 
 On pourra aussi configurer `fail2ban` pour que le serveur envoie un mail à l'administrateur lui indiquant les morceaux de logs concernés.
 
@@ -29,16 +29,18 @@ nano /etc/fail2ban/jail.conf
 
 **Envoi de mail** On remplacera la variable `"root@localhost"` par l'adresse mail de l'administrateur dans la partie `destmail`
 
-**Durée de ban** : On indiquera en seconde la durée d'indisponibilité dans la **variable bantime**. Par défaut cette durée est de 600 s.
+**Durée de ban** : On indiquera en seconde la durée d'indisponibilité dans la variable `bantime`.Par défaut cette durée est de 600 s.
 
 **Nombre d'essais provoquant un ban** :On indiquera aussi le nombre d'erreurs provoquant un ban de l'ip avec la variable `maxretry`. Par défaut cette valeur est de 3.
 
 **action en cas de ban** : On remplacera à la ligne  75 `action = %(action_)s` par `action = %(action_mwl)s`. Ainsi, l'admin va recevoir un mail avec le log concerné dans le message.
 
 ## Etat de fail2ban
-On pourra surveiller les protocoles de surveillances de fail2ban en faisant:
+On pourra surveiller les protocoles de surveillance de fail2ban en faisant:
+
 ```fail2ban-client status```
-On aura une réponse de ce type
+
+On aura une réponse de ce type:
 
 ```
  fail2ban-client status
