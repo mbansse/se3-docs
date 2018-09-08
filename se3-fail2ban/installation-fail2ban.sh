@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#Script d'installation du paquet fail2ban pour sécuriser l'interface
-# 3 erreurs de connexion
+#Script d'installation du paquet fail2ban pour sécuriser l'interface et détecter de multiples erreurs de connexion.
+
 apt-get install -y fail2ban
 
 #On remplace le fichier /usr/share/fail2ban/server/datedetector.py par une version patchée qui détectera bien la date dans les logs du se3.
 cd /usr/share/fail2ban/server/
-mv /usr/share/fail2ban/server/datedetector.py  /usr/share/fail2ban/server/datedetector.py.sav
+mrm /usr/share/fail2ban/server/datedetector.py
 wget https://raw.githubusercontent.com/SambaEdu/se3master/master/usr/share/fail2ban/server/datedetector.py
 
 
@@ -17,9 +17,10 @@ wget https://raw.githubusercontent.com/SambaEdu/se3master/master/etc/fail2ban/ja
 cd  /etc/fail2ban/filter.d/
 wget https://raw.githubusercontent.com/SambaEdu/se3master/master/etc/fail2ban/filter.d/interface-se3.conf
 
-
-#changement de fichier de configuration
+#on relance le service fail2ban
 
 service fail2ban restart
+
+echo ""
 echo "Pensez à modifier le fichier /etc/fail2ban/jail.conf pour y mettre votre email dans la variable "destemail = root@localhost""
 exit
