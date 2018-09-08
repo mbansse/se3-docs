@@ -2,7 +2,7 @@
 * [Présentation de fail2ban](#présentation-de-fail2ban)
 * [Installation de fail2ban sur le se3](#installation-de-fail2ban-sur-le-se3)
 * [Configuration de fail2ban](#configuration-de-fail2ban)
-* [Etat de fail2ban](#état-de-fail2ban)
+* [Etat de fail2ban](#etat-de-fail2ban)
 
 ## Présentation de fail2ban
 Fail2ban est un paquet debian qui examine des fichiers de logs choisis pour déterminer si plusieurs erreurs de connexion se sont produites.
@@ -27,9 +27,9 @@ On va modifier le fichier de configuration pour régler fail2ban selon ses envie
 nano /etc/fail2ban/jail.conf
 ```
 
-**envoi de mail** On remplacera la variable `"root@localhost"` par l'adresse mail de l'administrateur dans la partie `destmail`
+**Envoi de mail** On remplacera la variable `"root@localhost"` par l'adresse mail de l'administrateur dans la partie `destmail`
 
-**durée de ban** : On indiquera en seconde la durée d'indisponibilité dans la **variable bantime**. Par défaut cette durée est de 600 s.
+**Durée de ban** : On indiquera en seconde la durée d'indisponibilité dans la **variable bantime**. Par défaut cette durée est de 600 s.
 
 **Nombre d'essais provoquant un ban** :On indiquera aussi le nombre d'erreurs provoquant un ban de l'ip avec la variable `maxretry`. Par défaut cette valeur est de 3.
 
