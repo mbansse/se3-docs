@@ -49,7 +49,7 @@ Status
 On pourra voir précisément l'état de la surveillance de l'interface.
 ```fail2ban-client status interface-se3```
 
-
+```
 Status for the jail: interface-se3
 |- filter
 |  |- File list:        /var/log/se3/auth.log
@@ -59,7 +59,7 @@ Status for the jail: interface-se3
    |- Currently banned: 1
    |  `- IP list:       172.20.10.1
    `- Total banned:     1
-
+```
 Ici, on voit qu'un ip est actuellement bannie.
 
 
