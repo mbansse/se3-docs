@@ -27,7 +27,7 @@ On va modifier le fichier de configuration pour régler fail2ban selon ses envie
 nano /etc/fail2ban/jail.conf
 ```
 
-On remplacera la variable `"root@localhost"` par l'adresse mail de l'administrateur dans la partie `destmail`
+**envoi de mail** On remplacera la variable `"root@localhost"` par l'adresse mail de l'administrateur dans la partie `destmail`
 
 **durée de ban** : On indiquera en seconde la durée d'indisponibilité dans la **variable bantime**. Par défaut cette durée est de 600 s.
 
